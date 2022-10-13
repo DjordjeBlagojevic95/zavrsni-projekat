@@ -45,7 +45,6 @@ public class BaseTest {
         properties.load(fileInputStream);
 
         driver.get(properties.getProperty("textBoxPageUrl"));
-
     }
 
     @SneakyThrows
@@ -55,6 +54,23 @@ public class BaseTest {
         properties.load(fileInputStream);
 
         driver.get(properties.getProperty("webTablesPage"));
+    }
 
+    @SneakyThrows
+    public void navigateToPracticeFormPage() {
+        FileInputStream fileInputStream = new FileInputStream("src\\main\\resources\\application.properties");
+        Properties properties = new Properties();
+        properties.load(fileInputStream);
+
+        driver.get(properties.getProperty("practiceFormPage"));
+    }
+
+    @SneakyThrows
+    public void navigateToCheckboxPage() {
+        FileInputStream fileInputStream = new FileInputStream("src\\main\\resources\\application.properties");
+        Properties properties = new Properties();
+        properties.load(fileInputStream);
+
+        driver.get(properties.getProperty("checkboxPage"));
     }
 }

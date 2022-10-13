@@ -11,7 +11,6 @@ import static utils.PageConstants.*;
 public class TextBoxTests extends TextBoxPage {
 
     @Test
-    @SneakyThrows
     void populateInputFieldsAndSubmit() {
         new TextBoxPage();
         navigateToTextBoxPage();
