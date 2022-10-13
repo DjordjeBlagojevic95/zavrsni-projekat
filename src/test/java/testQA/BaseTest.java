@@ -2,11 +2,12 @@ package testQA;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.SneakyThrows;
+import methods.Button;
 import methods.Input;
+import methods.Wait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -16,13 +17,14 @@ import java.util.Properties;
 public class BaseTest {
 
     public static WebDriver driver;
-    public static WebDriverWait webDriverWait;
 
     public Input input = new Input(driver);
+    public Button button = new Button(driver);
+    public Wait wait = new Wait(driver);
 
 
     @BeforeClass
-    public static void setup() {
+    public void setup() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
@@ -37,28 +39,22 @@ public class BaseTest {
     }
 
     @SneakyThrows
-    public void login() {
-        FileInputStream fileInputStream = new FileInputStream("src\\main\\resources\\application.properties");
-        Properties properties = new Properties();
-        properties.load(fileInputStream);
-
-        try {
-            driver.get(properties.getProperty("url"));
-        } finally {
-            driver.quit();
-        }
-
-    }
-
-    @SneakyThrows
     public void navigateToTextBoxPage() {
         FileInputStream fileInputStream = new FileInputStream("src\\main\\resources\\application.properties");
         Properties properties = new Properties();
         properties.load(fileInputStream);
-        try {
-            driver.get(properties.getProperty("textBoxPageUrl"));
-        } finally {
-            driver.quit();
-        }
+
+        driver.get(properties.getProperty("textBoxPageUrl"));
+
+    }
+
+    @SneakyThrows
+    public void navigateToWebTablesPage() {
+        FileInputStream fileInputStream = new FileInputStream("src\\main\\resources\\application.properties");
+        Properties properties = new Properties();
+        properties.load(fileInputStream);
+
+        driver.get(properties.getProperty("webTablesPage"));
+
     }
 }
